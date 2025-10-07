@@ -40,10 +40,10 @@ struct ContactDetailsView: View {
             // Liquid gradient background
             LinearGradient(
                 gradient: Gradient(colors: [
-                    contact.color.opacity(0.25),
-                    Color.blue.opacity(0.25),
-                    Color.cyan.opacity(0.2),
-                    Color.mint.opacity(0.15)
+                    contact.color.opacity(0.95),
+                    Color.purple.opacity(0.95),
+                    Color.cyan.opacity(0.92),
+                    Color.mint.opacity(0.95)
                 ]),
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
@@ -83,6 +83,7 @@ struct ContactDetailsView: View {
                         .padding(.top, 10)
                         .offset(y: -10 * collapseProgress)
                         .opacity(1 - collapseProgress)
+                        .scaleEffect(1 - 3*collapseProgress<=0 ?0 : 1 - 3*collapseProgress)
                         .animation(.spring(response: 0.45, dampingFraction: 0.9), value: collapseProgress)
                         
                         // Contact info section
@@ -125,14 +126,13 @@ struct ContactDetailsView: View {
                                        
                                     ContactDInfoRow(label: "email", value: contact.email, isLast: true)
                                 }
-                                .conditionalGlassEffect()
                                 ContactDInfoRow(label: "mobile", value: contact.phoneNumber)
                                 ContactDInfoRow(label: "email", value: contact.email, isLast: true)
-                                    .conditionalGlassEffect()
+  
                                 ContactDInfoRow(label: "mobile", value: contact.phoneNumber)
-                                    .conditionalGlassEffect()
+  
                                 ContactDInfoRow(label: "email", value: contact.email, isLast: true)
-                                    .conditionalGlassEffect()
+    
                                 ContactDInfoRow(label: "mobile", value: contact.phoneNumber)
                                 ContactDInfoRow(label: "email", value: contact.email, isLast: true)
                             }
@@ -207,7 +207,7 @@ struct ContactDetailsView: View {
                 .overlay {
                     Text(contact.name)
                         .font(.system(size: 17, weight: .semibold))
-                        .foregroundStyle(.primary)
+                        .foregroundStyle(.white)
                         .lineLimit(1)
                         .minimumScaleFactor(0.7)
                         .opacity(collapseProgress)
